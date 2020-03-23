@@ -28,8 +28,7 @@ function sketchRNNStart() {
   rdp(0, total - 1, seedPoints, rdpPoints);
   rdpPoints.push(end);
   
-  // Drawing simplified path
-  background("yellow");
+  background(255);
   stroke(0);
   strokeWeight(4);
   beginShape();
@@ -44,21 +43,14 @@ function sketchRNNStart() {
   
   
   seedPath = [];
-  // Converting to SketchRNN states
   for (let i = 1; i < rdpPoints.length; i++) {
     let strokePath = {
       dx: rdpPoints[i].x - rdpPoints[i-1].x,
       dy: rdpPoints[i].y - rdpPoints[i-1].y,
       pen: 'down'
     }
-    //line(x, y, x + strokePath.dx, y + strokePath.dy);
-    //x += strokePath.dx;
-    //y += strokePath.dy;
     seedPath.push(strokePath);
   }
-  
-  
-  
   
   sketchRNN.generate(seedPath, gotStrokePath);
 }
@@ -67,8 +59,6 @@ function setup() {
   let canvas = createCanvas(400, 400);
   canvas.mousePressed(startDrawing);
   canvas.mouseReleased(sketchRNNStart);
-  // x = width / 2;
-  // y = height / 2;
   background(255);
   //sketchRNN.generate(gotStrokePath);
   console.log('model loaded');
@@ -76,8 +66,6 @@ function setup() {
 
 
 function gotStrokePath(error, strokePath) {
-  //console.error(error);
-  //console.log(strokePath);
   currentStroke = strokePath;
 }
 
@@ -87,15 +75,6 @@ function draw() {
 
 
   if (personDrawing) {
-    // let strokePath = {
-    //   dx: mouseX - pmouseX,
-    //   dy: mouseY - pmouseY,
-    //   pen: 'down'
-    // }
-    // line(x, y, x + strokePath.dx, y + strokePath.dy);
-    // x += strokePath.dx;
-    // y += strokePath.dy;
-    // seedPath.push(strokePath);
 
     line(mouseX, mouseY, pmouseX, pmouseY);
     seedPoints.push(createVector(mouseX, mouseY));
