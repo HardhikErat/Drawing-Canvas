@@ -30,7 +30,7 @@ function sketchRNNStart() {
   rdpPoints.push(end);
   
   // Drawing simplified path
-  background(255);
+  background("cream");
   stroke(0);
   strokeWeight(4);
   beginShape();
